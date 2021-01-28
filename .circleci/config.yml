@@ -32,4 +32,4 @@ build-deploy-dev:
     jobs: 
       - build-dev
     when:
-        - << pipeline.parameters.commit-message >>
+      equal: [/.*build-dev/, << pipeline.parameters.commit-message >>]
