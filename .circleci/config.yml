@@ -33,4 +33,4 @@ workflows:
         - build-dev
       when:
         and:
-          - equal: [/.*build-dev/, << pipeline.parameters.commit-message >>]
+          - equal: [build-dev, << pipeline.parameters.commit-message >>]
