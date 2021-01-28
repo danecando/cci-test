@@ -31,6 +31,6 @@ workflows:
   build-deploy-dev:
       when:
         and:
-          - equal: [build-dev, << pipeline.parameters.commit-message >>]
+          - equal: ["build-dev", << pipeline.parameters.commit-message >>]
       jobs:
         - build-dev
