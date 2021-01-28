@@ -32,5 +32,4 @@ build-deploy-dev:
     jobs: 
       - build-dev
     when:
-      and:
         - << pipeline.parameters.commit-message >>
