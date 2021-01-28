@@ -2,7 +2,7 @@ version: 2.1
 parameters:
   commit-message:
     type: string
-    default: $(git log --format=oneline -n 1 $CIRCLE_SHA1)
+    default: $(git log --format="%s" -n 1 $CIRCLE_SHA1)
 executors:
   docker-node:
     docker: 
@@ -27,9 +27,10 @@ workflows:
       - build-prod
     when:
       and:
-        - equal: [/*build-prod/, << pipeline.parameters.commit-message >>]
+        - equal: [build-prod, << pipeline.parameters.commit-message >>]
 build-deploy-dev:
     jobs: 
       - build-dev
     when:
-      equal: [/.*build-dev/, << pipeline.parameters.commit-message >>]
+      and:
+        - equal: [build-dev, << pipeline.parameters.commit-message >>]
