@@ -1,6 +1,6 @@
 version: 2.1
 parameters:
-  commitMessage:
+  commit-message:
     type: string
     default: $(git log --format=oneline -n 1 $CIRCLE_SHA1)
 executors:
@@ -15,7 +15,7 @@ jobs:
     executor: docker-node
     steps:
       - checkout
-      - run: echo "<< parameters.commitMessage >>"
+      - run: echo "<< pipeline.parameters.commit-message >>"
   build-prod:
     executor: docker-node
     steps:
