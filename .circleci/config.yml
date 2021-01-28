@@ -27,10 +27,10 @@ workflows:
       - build-prod
     when:
       and:
-        - equal: [<< pipeline.parameters.commit-message >>, /build-prod*/]
+        - equal: [<< pipeline.parameters.commit-message >>, /.*build-prod*./]
 build-deploy-dev:
     jobs:
       - build-dev
     when:
       and:
-        - equal: [<< pipeline.parameters.commit-message >>, /build-dev*/]
+        - equal: [<< pipeline.parameters.commit-message >>, /.*build-dev*./]
