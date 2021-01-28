@@ -13,20 +13,22 @@ executors:
 jobs:
   build-dev:
     executor: docker-node
-    condition:
-      and:
-        - equal: [/.*build-dev/, << pipeline.parameters.commit-message >>]
-    steps:
-      - checkout
-      - run: echo "<< pipeline.parameters.commit-message >>"
+    - when:
+      condition:
+        and:
+          - equal: [/.*build-dev/, << pipeline.parameters.commit-message >>]
+      steps:
+        - checkout
+        - run: echo "<< pipeline.parameters.commit-message >>"
   build-prod:
     executor: docker-node
-    condition:
-      and:
-        - equal: [/.*build-prod/, << pipeline.parameters.commit-message >>]
-    steps:
-      - checkout
-      - run: echo "<< pipeline.parameters.commit-message >>"
+    - when:
+      condition:
+        and:
+          - equal: [/.*build-prod/, << pipeline.parameters.commit-message >>]
+      steps:
+        - checkout
+        - run: echo "<< pipeline.parameters.commit-message >>"
 # workflows:
 #   build-deploy-prod:
 #     jobs:
