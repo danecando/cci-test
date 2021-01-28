@@ -20,17 +20,17 @@ jobs:
     executor: docker-node
     steps:
       - checkout
-      - run: echo "build-prod job ran"
+      - run: echo "<< pipeline.parameters.commit-message >>"
 workflows:
   build-deploy-prod:
     jobs:
       - build-prod
     when:
       condition:
-        - equal: [/.*build-prod*./, << pipeline.parameters.commit-message >>]
+        - equal: [/.*build-prod/, << pipeline.parameters.commit-message >>]
 build-deploy-dev:
     jobs:
       - build-dev
     when:
       condition:
-        - equal: [/.*build-dev*./, << pipeline.parameters.commit-message >>]
+        - equal: [/.*build-dev/, << pipeline.parameters.commit-message >>]
